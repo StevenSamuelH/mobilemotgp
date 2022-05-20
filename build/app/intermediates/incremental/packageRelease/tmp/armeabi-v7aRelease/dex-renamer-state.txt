@@ -1,0 +1,4 @@
+#Fri May 20 21:50:01 ICT 2022
+base.0=D\:\\PBP\\tk-pbp\\mobilemotogp\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
