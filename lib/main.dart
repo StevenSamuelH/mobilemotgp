@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:lib/api_model/motogp_model.dart';
 
 Future<List<Data>> fetchFilm() async {
-  String url = "http://127.0.0.1:8000/lab-3/json/";
+  String url = "http://motogpmerch.herokuapp.com/review-produk/json/";
   http.Response response = await http.get(Uri.parse(url));
   var data = jsonDecode(utf8.decode(response.bodyBytes));
   List<Data> review = [];
