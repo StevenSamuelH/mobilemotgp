@@ -32,28 +32,6 @@ class _AwalanState extends State<Awalan> {
     ];
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          actions: [
-            IconButton(
-              icon: Image.network(
-                  'https://w7.pngwing.com/pngs/170/729/png-transparent-moto-gp-hd-logo.png'),
-              onPressed: () => exit(0),
-            ),
-          ],
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method and use it to set our appbar title.
-          backgroundColor: Colors.white,
-          title: const Text(
-            'MotoGP Merchandise',
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                letterSpacing: 2.0,
-                height: 1.6,
-                fontFamily: 'Open Sans',
-                fontSize: 20),
-          ),
-          titleTextStyle: const TextStyle(color: Colors.black),
-        ),
         body: SingleChildScrollView(
             child: Column(children: [
           const SizedBox(height: 30),
@@ -163,10 +141,16 @@ class _AwalanState extends State<Awalan> {
                                       color: Colors.black.withOpacity(0.6)),
                                 ),
                               ),
+                              const SizedBox(
+                                height: 20,
+                              ),
                               Image(
                                 image: NetworkImage(snapshot.data![i]['image']),
                                 height: 150,
                                 width: 150,
+                              ),
+                              const SizedBox(
+                                height: 10,
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(10.0),
