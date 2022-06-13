@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:async';
+import 'package:mobilemotogp/main.dart';
 
 Future<http.Response> updateDataPembeli(String nama, String alamat, String kota,
     String kecamatan, String kodePos, String buktiPembayaran) {
@@ -209,6 +210,8 @@ class _FormPembelianState extends State<FormPembelian> {
                             _kodePosPembeli,
                             _buktiPembayaran)
                         .then((value) {});
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const MyApp()));
                   },
                 ),
               ],
