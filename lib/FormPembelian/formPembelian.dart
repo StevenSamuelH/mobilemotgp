@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
-Future<http.Response> updateDataPembeli(
-    String nama, String alamat, String kota, String kecamatan, String kodePos) {
+Future<http.Response> updateDataPembeli(String nama, String alamat, String kota,
+    String kecamatan, String kodePos, String buktiPembayaran) {
   return http.post(
     // Masih harus diganti
     Uri.parse(
@@ -17,7 +17,8 @@ Future<http.Response> updateDataPembeli(
       'alamat': alamat,
       'kota': kota,
       'kecamatan': kecamatan,
-      'kodePost': kodePos,
+      'kodePos': kodePos,
+      'buktiImg': buktiPembayaran,
     }),
   );
 }
@@ -160,6 +161,30 @@ class _FormPembelianState extends State<FormPembelian> {
                       return null;
                     },
                     onSaved: (value) {
+                      _buktiPembayaran = value!;
+                    },
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    obscureText: false, // Untuk membuat text menjadi invisible
+                    decoration: InputDecoration(
+                      hintText:
+                          "contoh: s4.bukalapak.com/img/9002/large/data.jpeg",
+                      labelText: "Link Bukti Pembayaran",
+                      // icon: const Icon(Icons.security),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0)),
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Link Bukti Pembayaran tidak boleh kosong';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
                       _kodePosPembeli = value!;
                     },
                   ),
@@ -176,8 +201,13 @@ class _FormPembelianState extends State<FormPembelian> {
                     }
                     _formKey.currentState!.save();
 
-                    updateDataPembeli(_namaPembeli, _alamatPembeli,
-                            _kotaPembeli, _kecamatanPembeli, _kodePosPembeli)
+                    updateDataPembeli(
+                            _namaPembeli,
+                            _alamatPembeli,
+                            _kotaPembeli,
+                            _kecamatanPembeli,
+                            _kodePosPembeli,
+                            _buktiPembayaran)
                         .then((value) {});
                   },
                 ),

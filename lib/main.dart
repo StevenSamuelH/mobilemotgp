@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:mobilemotogp/FormPembelian/formPembelian.dart';
 import 'package:mobilemotogp/Produk/formproduk.dart';
 import 'package:mobilemotogp/Review/review.dart';
 import 'package:mobilemotogp/Review/review_form.dart';
@@ -34,6 +35,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final screens = [
     const Awalan(),
     const FormReview(),
+    const FormPembelian(),
   ];
 
   void _onItemTapped(int index) {
