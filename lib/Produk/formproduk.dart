@@ -98,46 +98,69 @@ class _FormArtikelState extends State<FormArtikel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Add Produk')),
+        appBar: AppBar(
+          title: const Text('Add Produk'),
+          backgroundColor: Colors.red,
+        ),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
-            child: Container(
-          margin: const EdgeInsets.all(24),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildnamaProduk(),
-                _buildhargaProduk(),
-                _buildBagianTitle1(),
-                _buildgambarProduk(),
-                const SizedBox(
-                  height: 100,
-                ),
-                ElevatedButton(
-                  child: const Text(
-                    'Submit',
-                  ),
-                  onPressed: () {
-                    if (!_formKey.currentState!.validate()) {
-                      return;
-                    }
-                    _formKey.currentState!.save();
-
-                    updateProduk(_nameProduk, _priceProduk, _deskripsiProduk,
-                            _imageProduk)
-                        .then((value) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Awalan()));
-                    });
-                  },
-                )
-              ],
+            child: Column(children: [
+          const SizedBox(
+            height: 50,
+          ),
+          const Align(
+            alignment: Alignment.center,
+            child: Text(
+              "MOTOGPMERCH FORM",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 2.0,
+                  height: 1.6,
+                  fontFamily: 'Open Sans',
+                  fontSize: 20),
             ),
           ),
-        )));
+          Container(
+            margin: const EdgeInsets.all(24),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildnamaProduk(),
+                  _buildhargaProduk(),
+                  _buildBagianTitle1(),
+                  _buildgambarProduk(),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  ElevatedButton(
+                    child: const Text(
+                      'Submit',
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red,
+                    ),
+                    onPressed: () {
+                      if (!_formKey.currentState!.validate()) {
+                        return;
+                      }
+                      _formKey.currentState!.save();
+
+                      updateProduk(_nameProduk, _priceProduk, _deskripsiProduk,
+                              _imageProduk)
+                          .then((value) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Awalan()));
+                      });
+                    },
+                  )
+                ],
+              ),
+            ),
+          ),
+        ])));
   }
 }

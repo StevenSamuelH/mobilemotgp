@@ -18,13 +18,13 @@ class Awalan extends StatefulWidget {
 }
 
 class _AwalanState extends State<Awalan> {
+  int _current = 0;
+  bool isFavourite = true;
+  final CarouselController _controller = CarouselController();
+  Product studentService = Product();
+  Color _iconColor = Colors.blue;
   @override
   Widget build(BuildContext context) {
-    int _current = 0;
-    bool isFavourite = true;
-    final CarouselController _controller = CarouselController();
-    Product studentService = Product();
-    Color _iconColor = Colors.blue;
     final List<String> imgList = [
       'https://media.giphy.com/media/MRNr7i6zjPSCxkDZFz/giphy.gif',
       'https://media.giphy.com/media/hslu8XMb2ncwuss0zw/giphy.gif',
@@ -125,109 +125,132 @@ class _AwalanState extends State<Awalan> {
             }).toList(),
           ),
           const SizedBox(height: 30),
-          Align(
+          const Align(
             alignment: Alignment.centerLeft,
-            child: Container(
-              child: Text(
-                "   Produk",
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 2.0,
-                    height: 1.6,
-                    fontFamily: 'Open Sans',
-                    fontSize: 20),
-              ),
+            child: Text(
+              "   Produk",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 2.0,
+                  height: 1.6,
+                  fontFamily: 'Open Sans',
+                  fontSize: 20),
             ),
           ),
-          Container(
-            child: FutureBuilder<List>(
-              future: studentService.getAllProducts(),
-              builder: (context, snapshot) {
-                print(snapshot.data);
-                if (snapshot.hasData) {
-                  return ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: snapshot.data?.length,
-                      itemBuilder: (context, i) {
-                        return Center(
-                          child: Card(
-                            clipBehavior: Clip.antiAlias,
-                            child: Column(
-                              children: [
-                                ListTile(
-                                  leading:
-                                      const Icon(Icons.arrow_drop_down_circle),
-                                  title: Text(snapshot.data![i]['name']),
-                                  subtitle: Text(
-                                    snapshot.data![i]['description'],
-                                    style: TextStyle(
-                                        color: Colors.black.withOpacity(0.6)),
+          FutureBuilder<List>(
+            future: studentService.getAllProducts(),
+            builder: (context, snapshot) {
+              print(snapshot.data);
+              if (snapshot.hasData) {
+                return ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: snapshot.data?.length,
+                    itemBuilder: (context, i) {
+                      return Center(
+                        child: Card(
+                          clipBehavior: Clip.antiAlias,
+                          child: Column(
+                            children: [
+                              ListTile(
+                                leading: const Icon(Icons.new_releases,
+                                    color: Colors.red, size: 30),
+                                title: Text(snapshot.data![i]['name'],
+                                    style: const TextStyle(fontSize: 20)),
+                                subtitle: Text(
+                                  snapshot.data![i]['description'],
+                                  style: TextStyle(
+                                      color: Colors.black.withOpacity(0.6)),
+                                ),
+                              ),
+                              Image(
+                                image: NetworkImage(snapshot.data![i]['image']),
+                                height: 150,
+                                width: 150,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text(
+                                  "Rp." + snapshot.data![i]['price'].toString(),
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                Image(
-                                  image:
-                                      NetworkImage(snapshot.data![i]['image']),
-                                  height: 150,
-                                  width: 150,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Text(
-                                    "Rp." +
-                                        snapshot.data![i]['price'].toString(),
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                              ),
+                              ButtonBar(
+                                alignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        isFavourite = !isFavourite;
+                                      });
+                                      // Perform some action
+                                    },
+                                    icon: Icon(Icons.add_shopping_cart,
+                                        color: isFavourite
+                                            ? Colors.blue
+                                            : Colors.blue),
                                   ),
-                                ),
-                                ButtonBar(
-                                  alignment: MainAxisAlignment.start,
-                                  children: [
-                                    IconButton(
-                                      icon: Icon(Icons.add_shopping_cart,
-                                          color: isFavourite
-                                              ? Colors.blue
-                                              : Colors.white),
+                                  FlatButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        if (_iconColor == Colors.blue) {
+                                          _iconColor = Colors.red;
+                                        } else {
+                                          _iconColor = Colors.blue;
+                                        }
+                                      });
+                                      // Perform some action
+                                    },
+                                    child: Icon(
+                                      Icons.favorite,
                                       color: _iconColor,
-                                      onPressed: () {
-                                        setState(() {
-                                          isFavourite = !isFavourite;
-                                        });
-                                        // Perform some action
-                                      },
                                     ),
-                                    FlatButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          if (_iconColor == Colors.blue) {
-                                            _iconColor = Colors.red;
-                                          } else {
-                                            _iconColor = Colors.green;
-                                          }
-                                        });
-                                        // Perform some action
-                                      },
-                                      child: Icon(
-                                        Icons.favorite,
-                                        color: _iconColor,
-                                      ),
+                                  ),
+                                  FlatButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        if (_iconColor == Colors.blue) {
+                                          _iconColor = Colors.green;
+                                        } else {
+                                          _iconColor = Colors.blue;
+                                        }
+                                      });
+                                      // Perform some action
+                                    },
+                                    child: Icon(
+                                      Icons.share,
+                                      color: _iconColor,
                                     ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                                  ),
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Colors.red, // Background color
+                                    ),
+                                    onPressed: () {},
+                                    child: const Text('Beli Sekarang'),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                        );
-                      });
-                } else {
-                  return const Center(
-                    child: Text('No Data Found'),
-                  );
-                }
-              },
-            ),
+                          elevation: 8,
+                          shadowColor: Colors.blue,
+                          margin: const EdgeInsets.all(20),
+                        ),
+                      );
+                    });
+              } else {
+                return const Center(
+                  child: Text('No Data Found'),
+                );
+              }
+            },
+          ),
+          const SizedBox(
+            height: 50,
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -238,7 +261,10 @@ class _AwalanState extends State<Awalan> {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const FormArtikel()));
             },
-          )
+          ),
+          const SizedBox(
+            height: 50,
+          ),
         ])));
   }
 }
