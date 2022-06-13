@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'homeproduk.dart';
+import 'package:mobilemotogp/main.dart';
 
 Future<http.Response> updateProduk(
     String name, String price, String deskripsiProduk, String image) {
@@ -153,7 +153,7 @@ class _FormArtikelState extends State<FormArtikel> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const Awalan()));
+                                builder: (context) => const MyApp()));
                       });
                     },
                   )

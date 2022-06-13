@@ -9,7 +9,7 @@ Future<http.Response> updateDataPembeli(String nama, String alamat, String kota,
   return http.post(
     // Masih harus diganti
     Uri.parse(
-        'https://motogpmerch.herokuapp.com/apiproduk/add-produk/data-api'),
+        'https://motogpmerch.herokuapp.com/apipembeli/add-produk/data-pembeli'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
