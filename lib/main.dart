@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:mobilemotogp/Produk/formproduk.dart';
 import 'package:mobilemotogp/Review/review.dart';
+import 'package:mobilemotogp/Review/review_form.dart';
 import 'Produk/homeproduk.dart';
 
 void main() => runApp(const MyApp());
@@ -31,7 +33,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
   final screens = [
     const Awalan(),
-    const MyAppa(),
+    const FormReview(),
   ];
 
   void _onItemTapped(int index) {

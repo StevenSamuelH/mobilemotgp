@@ -39,12 +39,13 @@ class _MyAppState extends State<MyAppa> {
     return MaterialApp(
       title: 'Review Merchandise',
       theme: ThemeData(
-        primaryColor: Colors.lightBlueAccent,
+        primaryColor: Colors.red,
       ),
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Review Merchandise'),
         ),
+        backgroundColor: Colors.white,
         body: FutureBuilder<List<Data>>(
           future: fetchReview(),
           builder: (context, snapshot) {
@@ -61,7 +62,7 @@ class _MyAppState extends State<MyAppa> {
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     padding: const EdgeInsets.all(20.0),
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 179, 172, 41),
+                      color: Colors.red,
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: Column(
@@ -73,6 +74,7 @@ class _MyAppState extends State<MyAppa> {
                           style: const TextStyle(
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                         ),
                         Image(
