@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'review_model.dart';
+import 'review_form.dart';
 
 Future<List<Data>> fetchReview() async {
   String url = "http://motogpmerch.herokuapp.com/review-produk/json/";
@@ -70,7 +71,7 @@ class _MyAppState extends State<MyAppa> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          snapshot.data![index].fields.nama,
+                          snapshot.data![index].fields.namaProduk,
                           style: const TextStyle(
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold,
@@ -78,18 +79,38 @@ class _MyAppState extends State<MyAppa> {
                           ),
                         ),
                         Image(
-                          image:
-                              NetworkImage(snapshot.data![index].fields.gambar),
+                          image: NetworkImage(
+                              snapshot.data![index].fields.gambarProduk),
                           height: 150,
                           width: 150,
                         ),
+                        Text(
+                          snapshot.data![index].fields.reviewProduk,
+                          style: const TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
                         Image(
-                          image:
-                              NetworkImage(snapshot.data![index].fields.rating),
+                          image: NetworkImage(
+                              snapshot.data![index].fields.ratingProduk),
                           height: 150,
                           width: 150,
                         ),
                         const SizedBox(height: 10),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.red, // Background color
+                          ),
+                          child: const Text('Add Review'),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const FormReview()));
+                          },
+                        ),
                       ],
                     ),
                   );

@@ -12,7 +12,7 @@ void main() => runApp(const MyApp());
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  static const String _title = 'Flutter Code Sample';
+  static const String _title = 'Mobile MotoGP';
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
   final screens = [
     const Awalan(),
-    const FormReview(),
+    const MyAppa(),
     const FormPembelian(),
   ];
 

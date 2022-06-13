@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'review.dart';
+import 'package:mobilemotogp/main.dart';
 
 Future<http.Response> updateReview(
     String nama, String gambar, String review, String rating) {
   return http.post(
-    Uri.parse('https://motogpmerch.herokuapp.com/review-produk/'),
+    Uri.parse('https://motogpmerch.herokuapp.com/review-produk/add-review/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -152,7 +152,7 @@ class _FormReviewState extends State<FormReview> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const MyAppa()));
+                                builder: (context) => const MyApp()));
                       });
                     },
                   )

@@ -38,28 +38,28 @@ class Data {
 
 class Fields {
   Fields({
-    required this.nama,
-    required this.gambar,
-    required this.review,
-    required this.rating,
+    required this.namaProduk,
+    required this.gambarProduk,
+    required this.reviewProduk,
+    required this.ratingProduk,
   });
 
-  String nama;
-  String gambar;
-  String review;
-  String rating;
+  String namaProduk;
+  String gambarProduk;
+  String reviewProduk;
+  String ratingProduk;
 
   factory Fields.fromJson(Map<String, dynamic> json) => Fields(
-        nama: json["nama"],
-        gambar: json["gambar"],
-        review: json["review"],
-        rating: json["rating"],
+        namaProduk: json["nama"],
+        gambarProduk: json["gambar"],
+        reviewProduk: json["review"],
+        ratingProduk: json["rating"],
       );
 
   Map<String, String> toJson() => {
-        "nama": nama,
-        "gambar": gambar,
-        "review": review,
-        "rating": rating,
+        "nama": namaProduk,
+        "gambar": gambarProduk,
+        "review": reviewProduk,
+        "rating": ratingProduk,
       };
 }
